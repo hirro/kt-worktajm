@@ -1,15 +1,18 @@
 package com.arnellconsulting.domain
 
+import org.springframework.data.mongodb.core.mapping.Document
 import java.io.Serializable
 import java.time.LocalDateTime
 
-data class TimeEntry(
+@Document(collection = "time_entry")
+data class TimeEntry @JvmOverloads constructor(
+        @Id
         val id: String,
-        val createdAt: LocalDateTime,
-        val updatedAt: LocalDateTime,
-        val startTime: LocalDateTime,
-        val endTime: LocalDateTime,
-        val projectId: String,
-        val createdBy: String
+        val createdAt: LocalDateTime = LocalDateTime.now(),
+        val updatedAt: LocalDateTime = LocalDateTime.now(),
+        val startTime: LocalDateTime = LocalDateTime.now(),
+        val endTime: LocalDateTime = LocalDateTime.now(),
+        val projectId: String = "<default>",
+        val createdBy: String = "<default>"
 ) : Serializable
 
